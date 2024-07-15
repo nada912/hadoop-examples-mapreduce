@@ -10,19 +10,23 @@ public class AppDriver {
         ProgramDriver programDriver = new ProgramDriver();
 
         try {
-            programDriver.addClass("wordcount", WordCount.class,
+                programDriver.addClass("wordcount", WordCount.class,
                     "A map/reduce program that counts the words in the input files.");
-            programDriver.addClass("districts", Districts.class,
+                programDriver.addClass("districts", Districts.class,
                     "A map/reduce program that returns the districts containing trees only.");
-            programDriver.addClass("speciesCount", SpeciesCount.class,
+                programDriver.addClass("speciesCount", Species.class,
                     "A map/reduce program that returns the tree species counts.");
-            programDriver.addClass("maxHeight", MaxHeight.class,
+                programDriver.addClass("kindsCount", Kinds.class,
+                        "A map/reduce program that returns the number of tree of each kind.");
+                programDriver.addClass("maxHeight", MaxHeight.class,
                     "A map/reduce program that returns the maximum height for each species.");
-            programDriver.addClass("sortedTrees", SortedTrees.class,
+                programDriver.addClass("sortedTrees", SortedHeight.class,
                     "A map/reduce program that returns trees sorted by height.");
-            programDriver.addClass("sortedOldestTrees", SortedOldestTrees.class,
+                programDriver.addClass("sortedOldestTrees", SortedOldestTrees.class,
                     "A map/reduce program that returns the district with oldest tree.");
-            exitCode = programDriver.run(argv);
+                programDriver.addClass("mostTrees", MostTrees.class,
+                        "A map/reduce program that returns the district with most trees.");
+                exitCode = programDriver.run(argv);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

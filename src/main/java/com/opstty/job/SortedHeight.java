@@ -1,7 +1,7 @@
 package com.opstty.job;
 
-import com.opstty.mapper.SortedOldestTreesMapper;
-import com.opstty.reducer.SortedOldestTreesReducer;
+import com.opstty.mapper.SortedHeightMapper;
+import com.opstty.reducer.SortedHeightReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -12,23 +12,22 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 import org.apache.log4j.BasicConfigurator;
 
-public class SortedOldestTrees {
+public class SortedHeight {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
 
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
         if (otherArgs.length < 2) {
-            System.err.println("Usage: oldest <in> <out>");
+            System.err.println("Usage: height sorted <in> <out>");
             System.exit(2);
         }
 
         BasicConfigurator.configure();
-        Job job = Job.getInstance(conf, "Oldest"); 
-        job.setJarByClass(SortedOldestTrees.class);
-        // Set Mapper to species_mapper
-        job.setMapperClass(SortedOldestTreesMapper.class);
-        job.setReducerClass(SortedOldestTreesReducer.class);
+        Job job = Job.getInstance(conf, "HeightSorted"); 
+        job.setJarByClass(SortedHeight.class);
+        job.setMapperClass(SortedHeightMapper.class);
+        job.setReducerClass(SortedHeightReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));

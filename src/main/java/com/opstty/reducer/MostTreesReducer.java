@@ -1,28 +1,29 @@
 package com.opstty.reducer;
 
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.io.Text;
 
 import java.io.IOException;
 
-public class SortedOldestTreesReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    private int tree_age = Integer.MIN_VALUE;
+public class MostTreesReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+    private int max = Integer.MIN_VALUE;
     private Text district = new Text();
 
     public void reduce(Text key, Iterable<IntWritable> values, Context context)
             throws IOException, InterruptedException {
-
-        for(IntWritable value: values){
-            if(value.get() > tree_age){
-                tree_age = value.get();
-                district.set(key);
-            }
+        int sum = 0;
+        for (IntWritable val : values) {
+            sum += val.get();
+        }
+        if (sum > max) {
+            this.district.set(key);
+            this.max = sum;
         }
     }
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException {
-        context.write(district, new IntWritable(tree_age));
+        context.write(district, new IntWritable(max));
     }
 }
