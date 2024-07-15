@@ -24,11 +24,9 @@ public class Kinds {
         }
 
         BasicConfigurator.configure();
-        Job job = Job.getInstance(conf, "Kinds"); // Job name
+        Job job = Job.getInstance(conf, "Kinds"); 
         job.setJarByClass(Kinds.class);
-        // Set Mapper to species_mapper
         job.setMapperClass(KindsCountMapper.class);
-        // Set Reducer to default_reducer : no particular function to apply
         job.setReducerClass(KindsCountReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);

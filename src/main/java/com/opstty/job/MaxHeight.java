@@ -19,7 +19,7 @@ public class MaxHeight {
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
         if (otherArgs.length < 2) {
-            System.err.println("Usage: height <in> <out>");
+            System.err.println("Usage: maxHeight <in> <out>");
             System.exit(2);
         }
 

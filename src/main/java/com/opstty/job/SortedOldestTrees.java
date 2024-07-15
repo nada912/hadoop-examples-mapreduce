@@ -19,14 +19,13 @@ public class SortedOldestTrees {
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
         if (otherArgs.length < 2) {
-            System.err.println("Usage: oldest <in> <out>");
+            System.err.println("Usage: oldestTrees <in> <out>");
             System.exit(2);
         }
 
         BasicConfigurator.configure();
         Job job = Job.getInstance(conf, "Oldest"); 
         job.setJarByClass(SortedOldestTrees.class);
-        // Set Mapper to species_mapper
         job.setMapperClass(SortedOldestTreesMapper.class);
         job.setReducerClass(SortedOldestTreesReducer.class);
         job.setOutputKeyClass(Text.class);

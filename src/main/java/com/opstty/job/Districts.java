@@ -19,12 +19,12 @@ public class Districts {
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
         if (otherArgs.length < 2) {
-            System.err.println("Usage: dts <in> <out>");
+            System.err.println("Usage: districts <in> <out>");
             System.exit(2);
         }
 
         BasicConfigurator.configure();
-        Job job = Job.getInstance(conf, "district trees"); // Job name
+        Job job = Job.getInstance(conf, "district trees"); 
         job.setJarByClass(Districts.class);
         job.setMapperClass(TreesMapper.class);
         job.setReducerClass(TreesReducer.class);

@@ -19,7 +19,7 @@ public class SortedHeight {
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
         if (otherArgs.length < 2) {
-            System.err.println("Usage: height sorted <in> <out>");
+            System.err.println("Usage: sortedHeight <in> <out>");
             System.exit(2);
         }
 

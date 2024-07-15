@@ -19,12 +19,12 @@ public class MostTrees {
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 
         if (otherArgs.length < 2) {
-            System.err.println("Usage: most <in> <out>");
+            System.err.println("Usage: mostTrees <in> <out>");
             System.exit(2);
         }
 
         BasicConfigurator.configure();
-        Job job = Job.getInstance(conf, "Most"); // Job name
+        Job job = Job.getInstance(conf, "Most");
         job.setJarByClass(MostTrees.class);
         job.setMapperClass(MostTreesMapper.class);
         job.setReducerClass(MostTreesReducer.class);
